@@ -22,11 +22,18 @@ public class GameManager : MonoBehaviour {
     public Button dateOfBirth;
     public Button socialSecurityNumber;
     public Button employeeTelephoneNumber;
+    public Button test;
+
+    [Space(10)]
+    //GameObjects
+    public GameObject scorePanel;
+    public Text scoreText;
     #endregion
 
     #region Private Variables
     private Button _activeButton = null;
     private bool _activeButtonOnForm = false;
+    private int _score = 0;
     #endregion
 
     #region Built In Methods
@@ -47,15 +54,27 @@ public class GameManager : MonoBehaviour {
         dateOfBirth.onClick.AddListener(delegate { SetActive(dateOfBirth, false); });
         socialSecurityNumber.onClick.AddListener(delegate { SetActive(socialSecurityNumber, false); });
         employeeTelephoneNumber.onClick.AddListener(delegate { SetActive(employeeTelephoneNumber, false); });
+        test.onClick.AddListener(delegate { SetActive(test, false); });
     }
 
     private void Update()
     {
-        
-    }
+        if (Input.GetMouseButtonDown(0)) //Detects whether or not the mouse clicked
+        {
+            //If the score panel thing is Active then make it disappear
+            if (scorePanel.gameObject.activeSelf == true)
+            {
+                scorePanel.SetActive(false);
+                _score = 0; //resetting the score
+            }
+        }
 
-    private void OnMouseDown()
-    {
+        if(Input.GetKeyDown("escape"))
+        {
+            Debug.Log("I escaped. Haha");
+            Application.Quit();
+        }
+
         
     }
     #endregion
@@ -98,4 +117,68 @@ public class GameManager : MonoBehaviour {
 
     }
     #endregion
+
+    /**
+     * This function is called when the "Submit" button is clicked in the Game Scene
+     */
+    public void CalculateScore()
+    {
+        //Compare EACH field and if one of them matches, then the score increases by 1
+        string formField = lastNameForm.transform.GetChild(0).GetComponent<Text>().text; //This one of the values in the Form
+        string idField = lastName.transform.GetChild(0).GetComponent<Text>().text; //This is one of the values of the immigrant's id snippets
+        if (formField.Equals(idField))
+        {
+            _score++;
+        }
+
+        formField = firstNameForm.transform.GetChild(0).GetComponent<Text>().text; //This one of the values in the Form
+        idField = firstName.transform.GetChild(0).GetComponent<Text>().text; //This is one of the values of the immigrant's id snippets
+        if (formField.Equals(idField))
+        {
+            _score++;
+        }
+
+        formField = dateForm.transform.GetChild(0).GetComponent<Text>().text; //This one of the values in the Form
+        idField = date.transform.GetChild(0).GetComponent<Text>().text; //This is one of the values of the immigrant's id snippets
+        if (formField.Equals(idField))
+        {
+            _score++;
+        }
+
+        formField = dateOfBirthForm.transform.GetChild(0).GetComponent<Text>().text; //This one of the values in the Form
+        idField = dateOfBirth.transform.GetChild(0).GetComponent<Text>().text; //This is one of the values of the immigrant's id snippets
+        if (formField.Equals(idField))
+        {
+            _score++;
+        }
+
+        formField = socialSecurityNumberForm.transform.GetChild(0).GetComponent<Text>().text; //This one of the values in the Form
+        idField = socialSecurityNumber.transform.GetChild(0).GetComponent<Text>().text; //This is one of the values of the immigrant's id snippets
+        if (formField.Equals(idField))
+        {
+            _score++;
+        }
+
+        formField = employeeTelephoneNumberForm.transform.GetChild(0).GetComponent<Text>().text; //This one of the values in the Form
+        idField = employeeTelephoneNumber.transform.GetChild(0).GetComponent<Text>().text; //This is one of the values of the immigrant's id snippets
+        if (formField.Equals(idField))
+        {
+            _score++;
+        }
+
+        Debug.Log("Score: " + _score);
+
+        //Display the result window
+        scorePanel.SetActive(true);
+        bool win = _score == 6; //Score must be 6 in order for player to win
+
+        if (win)
+        {
+            scoreText.text = "Score: " + _score + "\n Correct! YOU WIN!";
+        }
+        else
+        {
+            scoreText.text = "Score: " + _score;
+        }
+    }
 }

@@ -26,10 +26,10 @@ namespace LW.Cameras
         private void OnSceneGUI()
         {
             // Camera Constraint Rect
-            Rect constraint = new Rect(targetCamera.bottomLeftCoordinate.x,
-                                       targetCamera.bottomLeftCoordinate.y,
-                                       targetCamera.topRightCoordinate.x - targetCamera.bottomLeftCoordinate.x,
-                                       targetCamera.topRightCoordinate.y - targetCamera.bottomLeftCoordinate.y);
+            Rect constraint = new Rect(targetCamera.bottomLeftCoordinate.x ,
+                                      targetCamera.bottomLeftCoordinate.y,
+                                      targetCamera.topRightCoordinate.x - targetCamera.bottomLeftCoordinate.x,
+                                      targetCamera.topRightCoordinate.y - targetCamera.bottomLeftCoordinate.y);
             Handles.DrawSolidRectangleWithOutline(constraint, new Color(1, 0, 0, 0.1f), Color.red);
 
             // Camera Constraint FreeMoveHandles

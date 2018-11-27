@@ -25,11 +25,21 @@ namespace LW.Cameras
 
         private void OnSceneGUI()
         {
+            Camera cam = targetCamera.gameObject.GetComponent<Camera>();
+
             // Camera Constraint Rect
+            float cameraHeightHalf = cam.rect.height * cam.orthographicSize;
+            float cameraWidthHalf = cameraHeightHalf * cam.aspect;
+
+            Rect constraintOuter = new Rect(targetCamera.bottomLeftCoordinate.x - cameraWidthHalf,
+                                      targetCamera.bottomLeftCoordinate.y - cameraHeightHalf,
+                                      targetCamera.topRightCoordinate.x - (targetCamera.bottomLeftCoordinate.x - cameraWidthHalf) + cameraWidthHalf,
+                                      targetCamera.topRightCoordinate.y - (targetCamera.bottomLeftCoordinate.y - cameraHeightHalf) + cameraHeightHalf);
             Rect constraint = new Rect(targetCamera.bottomLeftCoordinate.x ,
                                       targetCamera.bottomLeftCoordinate.y,
                                       targetCamera.topRightCoordinate.x - targetCamera.bottomLeftCoordinate.x,
                                       targetCamera.topRightCoordinate.y - targetCamera.bottomLeftCoordinate.y);
+            Handles.DrawSolidRectangleWithOutline(constraintOuter, new Color(1, 1, 0, 0.05f), Color.yellow);
             Handles.DrawSolidRectangleWithOutline(constraint, new Color(1, 0, 0, 0.1f), Color.red);
 
             // Camera Constraint FreeMoveHandles

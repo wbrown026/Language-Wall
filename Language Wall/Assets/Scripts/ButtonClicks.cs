@@ -37,4 +37,13 @@ public class ButtonClicks : MonoBehaviour {
     {
         howToPanel.SetActive(true);
     }
+
+    /**
+     * This function is called when the player clicks on the "Back" button in the "How To Play" window in the title scene.
+     * When the "Back" button is clicked, the "How To Play" window disappears
+     */
+    public void Back_Onclick()
+    {
+        howToPanel.SetActive(false);
+    }
 }

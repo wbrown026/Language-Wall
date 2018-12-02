@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour {
     [Space(10)]
     //GameObjects
     public GameObject scorePanel;
+    public GameObject nextForm;
     public Text scoreText;
     #endregion
 
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour {
     private Button _activeButton = null;
     private bool _activeButtonOnForm = false;
     private int _score = 0;
+    private int _maxScore = 6; //The max score that the player must get to win
     #endregion
 
     #region Built In Methods
@@ -61,8 +63,8 @@ public class GameManager : MonoBehaviour {
     {
         if (Input.GetMouseButtonDown(0)) //Detects whether or not the mouse clicked
         {
-            //If the score panel thing is Active then make it disappear
-            if (scorePanel.gameObject.activeSelf == true)
+            //If the score panel thing is Active AND Score != 6 then make it disappear
+            if (scorePanel.gameObject.activeSelf == true && _score != _maxScore)
             {
                 scorePanel.SetActive(false);
                 _score = 0; //resetting the score
@@ -119,6 +121,15 @@ public class GameManager : MonoBehaviour {
     #endregion
 
     /**
+     * This function is called when "Next Form" is clicked in the Game Scene 
+     * Goes to the next level
+     */
+    public void nextForm_OnClick(string levelTwoScene)
+    {
+        Application.LoadLevel(levelTwoScene);
+    }
+
+    /**
      * This function is called when the "Submit" button is clicked in the Game Scene
      */
     public void CalculateScore()
@@ -170,15 +181,18 @@ public class GameManager : MonoBehaviour {
 
         //Display the result window
         scorePanel.SetActive(true);
-        bool win = _score == 6; //Score must be 6 in order for player to win
+        bool win = _score == _maxScore; //Score must be 6 in order for player to win
 
         if (win)
         {
-            scoreText.text = "Score: " + _score + "\n Correct! YOU WIN!";
+            scoreText.text = "Score: " + _score + "\n \"Thank you for the form.\"";
+            //Set the Continue button to be active
+            nextForm.SetActive(true);
         }
         else
         {
-            scoreText.text = "Score: " + _score;
+            scoreText.text = "Score: " + _score + "\n \"The form is incorrect or incomplete. Please try again\"";
         }
     }
+
 }

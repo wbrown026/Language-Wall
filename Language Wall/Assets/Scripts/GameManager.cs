@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour {
     [Space(10)]
     //GameObjects
     public GameObject scorePanel;
-    public GameObject nextForm;
+    public GameObject playAgain;
     public Text scoreText;
     #endregion
 
@@ -124,9 +124,9 @@ public class GameManager : MonoBehaviour {
      * This function is called when "Next Form" is clicked in the Game Scene 
      * Goes to the next level
      */
-    public void nextForm_OnClick(string levelTwoScene)
+    public void playAgain_OnClick(string mainMenu)
     {
-        Application.LoadLevel(levelTwoScene);
+        Application.LoadLevel(mainMenu);
     }
 
     /**
@@ -187,7 +187,7 @@ public class GameManager : MonoBehaviour {
         {
             scoreText.text = "Score: " + _score + "\n \"Thank you for the form.\"";
             //Set the Continue button to be active
-            nextForm.SetActive(true);
+            playAgain.SetActive(true);
         }
         else
         {

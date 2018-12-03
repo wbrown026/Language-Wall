@@ -598,11 +598,9 @@ MonoBehaviour:
     that will help you receive the services you need.\n\nSince you're not an English
     speaker it's hard for you to figure out what the forms are asking you. The words
     will appear gibberish and it's your task to fill them out the correct way. \n\nYou
-    have two things you need to keep in check: Your Time and your Money\n\n\nYou can
-    figure out what the fields are asking for by context clues and by ultilizing your
-    resources.\n\nUltilizing resources will cost you either your time or your money.\n\nThe
-    goal here is for you to fill out the forms without losing all of your Time and
-    Money."
+    can figure out what the fields are asking for by context clues and by ultilizing
+    your resources (Such as the Dictionary).\n\nThe goal here is for you to fill out
+    the forms."
 --- !u!222 &942125587
 CanvasRenderer:
   m_ObjectHideFlags: 0

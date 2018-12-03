@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ButtonClicks : MonoBehaviour {
 
     public GameObject howToPanel; //The How To Panel of the title scene
+    public GameObject informationPanel;
 
 	// Use this for initialization
 	void Start () {
@@ -38,6 +39,12 @@ public class ButtonClicks : MonoBehaviour {
         howToPanel.SetActive(true);
     }
 
+    public void Information_Onclick()
+    {
+        informationPanel.SetActive(true);
+    }
+
+
     /**
      * This function is called when the player clicks on the "Back" button in the "How To Play" window in the title scene.
      * When the "Back" button is clicked, the "How To Play" window disappears
@@ -45,5 +52,6 @@ public class ButtonClicks : MonoBehaviour {
     public void Back_Onclick()
     {
         howToPanel.SetActive(false);
+        informationPanel.SetActive(false);
     }
 }
